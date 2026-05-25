@@ -2,21 +2,28 @@
    MOBILE NAVIGATION — Hamburger Menu Management
 ═════════════════════════════════════════════════════════════════════ */
 
+let mobileNavInstance = null;
+
 class MobileNav {
   constructor() {
     this.mobMenu = document.getElementById('mobMenu');
     this.hamButton = document.querySelector('.ham');
     this.mobLinks = this.mobMenu?.querySelectorAll('a') || [];
+    this.isOpen = false;
 
     this.init();
   }
 
   init() {
-    // Hamburger button click
+    // Hamburger button click - TOGGLE MENU
     if (this.hamButton) {
       this.hamButton.addEventListener('click', (e) => {
         e.stopPropagation();
-        this.toggleMenu();
+        if (this.isOpen) {
+          this.closeMenu();
+        } else {
+          this.openMenu();
+        }
       });
     }
 
@@ -27,7 +34,7 @@ class MobileNav {
 
     // Close menu with Escape key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
+      if (e.key === 'Escape' && this.isOpen) {
         this.closeMenu();
       }
     });
@@ -35,25 +42,18 @@ class MobileNav {
     // Close menu when clicking outside
     if (this.mobMenu) {
       this.mobMenu.addEventListener('click', (e) => {
-        if (e.target === this.mobMenu) {
+        if (e.target === this.mobMenu && this.isOpen) {
           this.closeMenu();
         }
       });
     }
   }
 
-  toggleMenu() {
-    if (this.mobMenu?.classList.contains('open')) {
-      this.closeMenu();
-    } else {
-      this.openMenu();
-    }
-  }
-
   openMenu() {
-    if (this.mobMenu) {
+    if (this.mobMenu && !this.isOpen) {
       this.mobMenu.classList.add('open');
       document.body.style.overflow = 'hidden';
+      this.isOpen = true;
 
       // Animate hamburger
       const spans = this.hamButton?.querySelectorAll('span');
@@ -66,9 +66,10 @@ class MobileNav {
   }
 
   closeMenu() {
-    if (this.mobMenu) {
+    if (this.mobMenu && this.isOpen) {
       this.mobMenu.classList.remove('open');
       document.body.style.overflow = '';
+      this.isOpen = false;
 
       // Reset hamburger
       const spans = this.hamButton?.querySelectorAll('span');
@@ -80,9 +81,6 @@ class MobileNav {
     }
   }
 }
-
-// Global instance
-let mobileNavInstance = null;
 
 // Initialize on DOM ready
 if (document.readyState === 'loading') {
