@@ -57,6 +57,17 @@ textarea {
   font-family: var(--ff-body);
 }
 
+/* Focus states — visible keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 2px solid var(--sun);
+  outline-offset: 2px;
+}
+
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   *,

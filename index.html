@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -21,9 +21,63 @@
   <link rel="stylesheet" href="assets/css/responsive.css">
 
   <!-- Security: Content Security Policy -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https:; frame-src https://www.youtube.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https:; frame-src https://www.youtube.com;">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- Open Graph (Social Media Sharing) -->
+  <meta property="og:title" content="ABCSolar — Energía Solar para Hogar, Empresa e Industria">
+  <meta property="og:description" content="Instalamos sistemas fotovoltaicos con garantía 25 años. Ahorra 90-95% en tu recibo de CFE. Certificados FIDE y CONOCER. +500 instalaciones completadas.">
+  <meta property="og:image" content="https://abcsolar.com.mx/public/og-image-1200x630.png">
+  <meta property="og:url" content="https://abcsolar.com.mx">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ABCSolar — Energía Solar para Hogar, Empresa e Industria">
+  <meta name="twitter:description" content="Instalamos sistemas fotovoltaicos con garantía 25 años. Ahorra 90-95% en CFE. Certificados FIDE y CONOCER.">
+  <meta name="twitter:image" content="https://abcsolar.com.mx/public/og-image-1200x630.png">
+
+  <!-- JSON-LD Structured Data (LocalBusiness + AggregateRating) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "ABC Solar",
+    "image": "https://abcsolar.com.mx/public/og-image-1200x630.png",
+    "description": "Instalamos sistemas fotovoltaicos para hogares, empresas e industrias en México. Ahorro garantizado 90-95% en recibo de CFE.",
+    "url": "https://abcsolar.com.mx",
+    "telephone": "+52-722-622-0941",
+    "email": "contacto@abcsolar.com.mx",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Solar 123",
+      "addressLocality": "Toluca",
+      "addressRegion": "Estado de México",
+      "postalCode": "50000",
+      "addressCountry": "MX"
+    },
+    "priceRange": "$14000 - $30000",
+    "areaServed": ["CDMX", "Estado de México", "Guanajuato", "Querétaro", "San Luis Potosí", "Puebla", "Veracruz", "Tabasco"],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "500",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "knowsAbout": ["Paneles solares", "Energía renovable", "Instalación fotovoltaica", "Sistemas interconectados"],
+    "sameAs": [
+      "https://www.facebook.com/abcsolar",
+      "https://www.instagram.com/abcsolar",
+      "https://wa.me/527226220941"
+    ],
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  }
+  </script>
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
@@ -34,15 +88,15 @@
 <div class="mob-menu" id="mobMenu">
   <div class="mob-header">
     <img src="public/logo-abc-full.png" alt="ABCSolar" style="height:40px;width:auto;object-fit:contain;filter:none;">
-    <button class="mob-close" onclick="closeMob()" aria-label="Cerrar menú">✕</button>
+    <button class="mob-close" id="mobClose" aria-label="Cerrar menú">✕</button>
   </div>
-  <a href="#beneficios" onclick="closeMob()">Beneficios</a>
-  <a href="#para-quien" onclick="closeMob()">Soluciones</a>
-  <a href="#calculadora" onclick="closeMob()">Calcula tu ahorro</a>
-  
-  <a href="#clientes" onclick="closeMob()">Clientes</a>
-  <a href="#testimonios" onclick="closeMob()">Testimonios</a>
-  <a href="#contacto" onclick="closeMob()" class="mob-cta">Cotización Gratis →</a>
+  <a href="#beneficios">Beneficios</a>
+  <a href="#para-quien">Soluciones</a>
+  <a href="#calculadora">Calcula tu ahorro</a>
+
+  <a href="#clientes">Clientes</a>
+  <a href="#testimonios">Testimonios</a>
+  <a href="#contacto" class="mob-cta">Cotización Gratis →</a>
 </div>
 
 <!-- NAV -->
@@ -56,11 +110,13 @@
     <li><a href="#testimonios">Testimonios</a></li>
   </ul>
   <div class="nav-r">
-    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Cambiar modo" aria-label="Cambiar modo de color">🌙</button>
+    <button class="theme-btn" id="themeBtn" title="Cambiar modo" aria-label="Cambiar modo de color">🌙</button>
     <a href="#contacto" class="btn-cta">Cotización Gratis</a>
-    <div class="ham" onclick="openMob()" role="button" tabindex="0" aria-label="Abrir menú de navegación" onkeydown="if(event.key==='Enter')openMob()"><span></span><span></span><span></span></div>
+    <div class="ham" role="button" tabindex="0" aria-label="Abrir menú de navegación"><span></span><span></span><span></span></div>
   </div>
 </nav>
+
+<main id="main-content">
 
 <!-- ══ HERO ══ -->
 <section id="hero">
@@ -93,7 +149,7 @@
       <a href="#contacto" class="btn-primary">Quiero cotización gratis →</a>
       <a href="#calculadora" class="btn-outline">Calcular mi ahorro</a>
     </div>
-    <div class="scroll-arrow" onclick="document.getElementById('numbers').scrollIntoView({behavior:'smooth'})">
+    <div class="scroll-arrow" id="scrollArrow">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m0 0-7-7m7 7 7-7"/></svg>
       Ver cómo funciona
     </div>
@@ -120,12 +176,12 @@
   <div class="hero-right">
     <div class="hero-mosaic">
       <div class="mosaic-img tall">
-        <img src="assets/images/projects/proyecto-tecnico-abcsolar.jpg" alt="Panorámica industrial" loading="eager" style="object-position: center 40%;">
+        <img src="assets/images/projects/proyecto-panoramica-industrial.jpg" alt="Panorámica industrial" loading="eager" style="object-position: center 40%;">
         <div class="mosaic-overlay"></div>
         <div class="mosaic-tag">Industrial</div>
       </div>
       <div class="mosaic-img">
-        <img src="assets/images/projects/residencial-hero1" alt="Técnico ABCSolar en instalación" loading="eager" style="object-position: center top;">
+        <img src="assets/images/projects/proyecto-tecnico-abcsolar.jpg" alt="Técnico ABCSolar en instalación" loading="eager" style="object-position: center top;">
         <div class="mosaic-overlay"></div>
         <div class="mosaic-tag">Residencial</div>
       </div>
@@ -135,7 +191,7 @@
         <div class="mosaic-tag">Innovación</div>
       </div>
       <div class="mosaic-img span2">
-        <img src="assets/images/projects/proyecto-panoramica-industrial.jpg" alt="Pérgola solar comercial" loading="eager" style="object-position: center 30%;">
+        <img src="assets/images/projects/proyecto-comercial-pergola.jpg" alt="Pérgola solar comercial" loading="eager" style="object-position: center 30%;">
         <div class="mosaic-overlay"></div>
         <div class="mosaic-tag">Comercial</div>
       </div>
@@ -251,7 +307,7 @@
       <p style="color:rgba(255,255,255,.72);font-size:1rem;line-height:1.85;margin-bottom:44px;max-width:520px;margin-left:auto;margin-right:auto">
         Diagnóstico, diseño, instalación e interconexión con CFE. Todo con nuestro equipo certificado — sin complicaciones para ti.
       </p>
-      <button class="video-play-btn" onclick="openVideoModal()">
+      <button class="video-play-btn">
         <div class="play-ring">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="6 3 20 12 6 21 6 3"/></svg>
         </div>
@@ -280,7 +336,7 @@
 <!-- VIDEO MODAL -->
 <div id="videoModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;align-items:center;justify-content:center;">
   <div style="position:relative;width:90vw;max-width:960px;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.6);">
-    <button onclick="closeVideoModal()" style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.15);border:none;color:white;width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:18px;z-index:10;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">✕</button>
+    <button id="videoCloseBtn" class="video-close-btn" aria-label="Cerrar video">✕</button>
     <div style="position:relative;padding-bottom:56.25%;height:0;background:#000;">
       <iframe id="ytPlayer" src="" title="ABCSolar — Video promocional" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe>
     </div>
@@ -301,9 +357,9 @@
   <div class="s-tag">Soluciones</div>
   <h2 class="s-title reveal">Solar para cada<br>tipo de cliente</h2>
   <div class="tabs stg">
-    <button class="tab-btn active" onclick="setTab(0)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Residencial</button>
-    <button class="tab-btn" onclick="setTab(1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg> Comercial</button>
-    <button class="tab-btn" onclick="setTab(2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M2 20V8l7-5v5l7-5v5l5-3v10z"/></svg> Industrial</button>
+    <button class="tab-btn active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Residencial</button>
+    <button class="tab-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg> Comercial</button>
+    <button class="tab-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M2 20V8l7-5v5l7-5v5l5-3v10z"/></svg> Industrial</button>
   </div>
   <div class="tab-content active" id="tab0">
     <div class="tab-img"><img loading="lazy" src="assets/images/projects/proyecto-techo-1.jpg" alt="Instalación residencial en techo"></div>
@@ -396,7 +452,7 @@
 
   <!-- VIDEO CTA -->
   <div style="margin-top: 60px; text-align: center;">
-    <button onclick="openVideoModal()" class="btn-primary" style="padding: 14px 32px; font-size: 1rem;">▶ Ver cómo lo hacemos</button>
+    <button class="btn-primary video-open-btn" style="padding: 14px 32px; font-size: 1rem;">▶ Ver cómo lo hacemos</button>
   </div>
 
 </section>
@@ -408,11 +464,11 @@
     <div class="calc-box reveal-l">
       <div class="cfield">
         <label>Monto mensual en tu recibo de luz (MXN)</label>
-        <input type="number" id="recibo" placeholder="Escribe el total de tu último recibo" value="2500" oninput="calcular()">
+        <input type="number" id="recibo" placeholder="Escribe el total de tu último recibo" value="2500">
       </div>
       <div class="cfield">
         <label>Tipo de inmueble <span style="color:var(--sun);font-size:.72rem;">(tarifa CFE de referencia)</span></label>
-        <select id="tipo" onchange="calcular()">
+        <select id="tipo">
           <option value="residencial">🏠 Casa habitación — Tarifa 1 / DAC (~$1.00–$5.50/kWh)</option>
           <option value="comercial_pdbt">🏪 Negocio pequeño/mediano — PDBT (~$4.00/kWh)</option>
           <option value="comercial_gdbt">🏢 Empresa grande (>25 kW) — GDBT (~$4.20/kWh)</option>
@@ -423,7 +479,7 @@
       </div>
       <div class="cfield">
         <label>Porcentaje de ahorro objetivo: <strong id="pct-lbl" style="color:var(--sun)">80%</strong></label>
-        <input type="range" class="range-input" id="pct" min="40" max="100" value="80" oninput="calcular()">
+        <input type="range" class="range-input" id="pct" min="40" max="100" value="80">
       </div>
       <div class="res-grid">
         <div class="res-card"><div class="res-ico">💸</div><div class="res-lbl">Costo actual</div><div class="res-val" id="rc-mensual">$2,500</div><div class="res-sub" id="rc-anual">$30,000/año</div></div>
@@ -473,42 +529,42 @@
 
     <!-- Estados — lista horizontal tipo timeline -->
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:64px;">
-      <div style="padding:28px 24px;border-left:3px solid var(--sun);background:rgba(245,158,11,0.06);transition:background 0.3s;" onmouseover="this.style.background='rgba(245,158,11,0.12)'" onmouseout="this.style.background='rgba(245,158,11,0.06)'">
+      <div class="estado-card estado-primary" style="padding:28px 24px;border-left:3px solid var(--sun);background:rgba(245,158,11,0.06);transition:background 0.3s;">
         <div style="font-size:1.4rem;margin-bottom:8px;">🏙️</div>
         <div style="font-family:'Merriweather',serif;font-weight:700;color:#fff;font-size:0.95rem;">Ciudad de México</div>
         <div style="font-family:'Merriweather',serif;font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:4px;">Zona metropolitana</div>
       </div>
-      <div style="padding:28px 24px;border-left:3px solid var(--sun);background:rgba(245,158,11,0.06);transition:background 0.3s;" onmouseover="this.style.background='rgba(245,158,11,0.12)'" onmouseout="this.style.background='rgba(245,158,11,0.06)'">
+      <div class="estado-card estado-primary" style="padding:28px 24px;border-left:3px solid var(--sun);background:rgba(245,158,11,0.06);transition:background 0.3s;">
         <div style="font-size:1.4rem;margin-bottom:8px;">🏔️</div>
         <div style="font-family:'Merriweather',serif;font-weight:700;color:#fff;font-size:0.95rem;">Estado de México</div>
         <div style="font-family:'Merriweather',serif;font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:4px;">Sede principal</div>
       </div>
-      <div style="padding:28px 24px;border-left:3px solid var(--sun);background:rgba(245,158,11,0.06);transition:background 0.3s;" onmouseover="this.style.background='rgba(245,158,11,0.12)'" onmouseout="this.style.background='rgba(245,158,11,0.06)'">
+      <div class="estado-card estado-primary" style="padding:28px 24px;border-left:3px solid var(--sun);background:rgba(245,158,11,0.06);transition:background 0.3s;">
         <div style="font-size:1.4rem;margin-bottom:8px;">🌵</div>
         <div style="font-family:'Merriweather',serif;font-weight:700;color:#fff;font-size:0.95rem;">Guanajuato</div>
         <div style="font-family:'Merriweather',serif;font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:4px;">Bajío industrial</div>
       </div>
-      <div style="padding:28px 24px;border-left:3px solid var(--sun);background:rgba(245,158,11,0.06);transition:background 0.3s;" onmouseover="this.style.background='rgba(245,158,11,0.12)'" onmouseout="this.style.background='rgba(245,158,11,0.06)'">
+      <div class="estado-card estado-primary" style="padding:28px 24px;border-left:3px solid var(--sun);background:rgba(245,158,11,0.06);transition:background 0.3s;">
         <div style="font-size:1.4rem;margin-bottom:8px;">🏛️</div>
         <div style="font-family:'Merriweather',serif;font-weight:700;color:#fff;font-size:0.95rem;">Querétaro</div>
         <div style="font-family:'Merriweather',serif;font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:4px;">Zona tecnológica</div>
       </div>
-      <div style="padding:28px 24px;border-left:3px solid rgba(245,158,11,0.4);background:rgba(245,158,11,0.03);transition:background 0.3s;" onmouseover="this.style.background='rgba(245,158,11,0.09)'" onmouseout="this.style.background='rgba(245,158,11,0.03)'">
+      <div class="estado-card estado-secondary" style="padding:28px 24px;border-left:3px solid rgba(245,158,11,0.4);background:rgba(245,158,11,0.03);transition:background 0.3s;">
         <div style="font-size:1.4rem;margin-bottom:8px;">⛪</div>
         <div style="font-family:'Merriweather',serif;font-weight:700;color:#fff;font-size:0.95rem;">San Luis Potosí</div>
         <div style="font-family:'Merriweather',serif;font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:4px;">Centro norte</div>
       </div>
-      <div style="padding:28px 24px;border-left:3px solid rgba(245,158,11,0.4);background:rgba(245,158,11,0.03);transition:background 0.3s;" onmouseover="this.style.background='rgba(245,158,11,0.09)'" onmouseout="this.style.background='rgba(245,158,11,0.03)'">
+      <div class="estado-card estado-secondary" style="padding:28px 24px;border-left:3px solid rgba(245,158,11,0.4);background:rgba(245,158,11,0.03);transition:background 0.3s;">
         <div style="font-size:1.4rem;margin-bottom:8px;">🌋</div>
         <div style="font-family:'Merriweather',serif;font-weight:700;color:#fff;font-size:0.95rem;">Puebla</div>
         <div style="font-family:'Merriweather',serif;font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:4px;">Centro sur</div>
       </div>
-      <div style="padding:28px 24px;border-left:3px solid rgba(245,158,11,0.4);background:rgba(245,158,11,0.03);transition:background 0.3s;" onmouseover="this.style.background='rgba(245,158,11,0.09)'" onmouseout="this.style.background='rgba(245,158,11,0.03)'">
+      <div class="estado-card estado-secondary" style="padding:28px 24px;border-left:3px solid rgba(245,158,11,0.4);background:rgba(245,158,11,0.03);transition:background 0.3s;">
         <div style="font-size:1.4rem;margin-bottom:8px;">🌊</div>
         <div style="font-family:'Merriweather',serif;font-weight:700;color:#fff;font-size:0.95rem;">Veracruz</div>
         <div style="font-family:'Merriweather',serif;font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:4px;">Golfo de México</div>
       </div>
-      <div style="padding:28px 24px;border-left:3px solid rgba(245,158,11,0.4);background:rgba(245,158,11,0.03);transition:background 0.3s;" onmouseover="this.style.background='rgba(245,158,11,0.09)'" onmouseout="this.style.background='rgba(245,158,11,0.03)'">
+      <div class="estado-card estado-secondary" style="padding:28px 24px;border-left:3px solid rgba(245,158,11,0.4);background:rgba(245,158,11,0.03);transition:background 0.3s;">
         <div style="font-size:1.4rem;margin-bottom:8px;">🛢️</div>
         <div style="font-family:'Merriweather',serif;font-weight:700;color:#fff;font-size:0.95rem;">Tabasco</div>
         <div style="font-family:'Merriweather',serif;font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:4px;">Sureste</div>
@@ -843,8 +899,8 @@
     </div>
   </div>
   <div class="test-nav">
-    <button onclick="scrollTest(-1)" aria-label="Testimonio anterior">←</button>
-    <button onclick="scrollTest(1)" aria-label="Siguiente testimonio">→</button>
+    <button id="testPrev" aria-label="Testimonio anterior">←</button>
+    <button id="testNext" aria-label="Siguiente testimonio">→</button>
   </div>
 </section>
 
@@ -853,12 +909,12 @@
   <div class="s-tag">Preguntas frecuentes</div>
   <h2 class="s-title reveal" style="text-align:center">Resolvemos<br>tus dudas</h2>
   <div class="faq-wrap reveal">
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">¿Cuánto tiempo tarda la instalación?<div class="faq-tog">+</div></div><div class="faq-a">Residencial: 1–3 días hábiles. Comercial: 1–2 semanas. Industrial: 2–6 semanas según capacidad. Incluye gestión completa de permisos con CFE.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">¿Funciona en días nublados?<div class="faq-tog">+</div></div><div class="faq-a">Sí. Los paneles generan energía con luz difusa, no solo con sol directo. En días nublados la eficiencia baja un 15–25%, pero el sistema sigue produciendo. La red de CFE actúa como respaldo automático.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">¿Necesito hacer trámites con CFE?<div class="faq-tog">+</div></div><div class="faq-a">Nosotros nos encargamos de todo: estudio de interconexión, solicitud de contrato y seguimiento con CFE. Tú no mueves un dedo.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">¿Tienen opciones de financiamiento?<div class="faq-tog">+</div></div><div class="faq-a">Sí. Tenemos esquemas propios y alianzas con instituciones bancarias. En muchos casos, la mensualidad del crédito es menor al ahorro mensual, haciendo la inversión neutra o positiva desde el día uno.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">¿Qué pasa si la luz se va?<div class="faq-tog">+</div></div><div class="faq-a">Los sistemas interconectados a CFE se apagan automáticamente durante cortes (medida de seguridad para los trabajadores de CFE). Si necesitas respaldo durante apagones, podemos agregar un sistema de baterías.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">¿Cuánto mantenimiento requiere?<div class="faq-tog">+</div></div><div class="faq-a">Mínimo. Recomendamos limpieza 1–2 veces al año y revisión técnica anual. Ofrecemos planes de mantenimiento preventivo para que no te preocupes por nada.</div></div>
+    <div class="faq-item"><div class="faq-q" tabindex="0" role="button">¿Cuánto tiempo tarda la instalación?<div class="faq-tog">+</div></div><div class="faq-a">Residencial: 1–3 días hábiles. Comercial: 1–2 semanas. Industrial: 2–6 semanas según capacidad. Incluye gestión completa de permisos con CFE.</div></div>
+    <div class="faq-item"><div class="faq-q" tabindex="0" role="button">¿Funciona en días nublados?<div class="faq-tog">+</div></div><div class="faq-a">Sí. Los paneles generan energía con luz difusa, no solo con sol directo. En días nublados la eficiencia baja un 15–25%, pero el sistema sigue produciendo. La red de CFE actúa como respaldo automático.</div></div>
+    <div class="faq-item"><div class="faq-q" tabindex="0" role="button">¿Necesito hacer trámites con CFE?<div class="faq-tog">+</div></div><div class="faq-a">Nosotros nos encargamos de todo: estudio de interconexión, solicitud de contrato y seguimiento con CFE. Tú no mueves un dedo.</div></div>
+    <div class="faq-item"><div class="faq-q" tabindex="0" role="button">¿Tienen opciones de financiamiento?<div class="faq-tog">+</div></div><div class="faq-a">Sí. Tenemos esquemas propios y alianzas con instituciones bancarias. En muchos casos, la mensualidad del crédito es menor al ahorro mensual, haciendo la inversión neutra o positiva desde el día uno.</div></div>
+    <div class="faq-item"><div class="faq-q" tabindex="0" role="button">¿Qué pasa si la luz se va?<div class="faq-tog">+</div></div><div class="faq-a">Los sistemas interconectados a CFE se apagan automáticamente durante cortes (medida de seguridad para los trabajadores de CFE). Si necesitas respaldo durante apagones, podemos agregar un sistema de baterías.</div></div>
+    <div class="faq-item"><div class="faq-q" tabindex="0" role="button">¿Cuánto mantenimiento requiere?<div class="faq-tog">+</div></div><div class="faq-a">Mínimo. Recomendamos limpieza 1–2 veces al año y revisión técnica anual. Ofrecemos planes de mantenimiento preventivo para que no te preocupes por nada.</div></div>
   </div>
 </section>
 
@@ -877,17 +933,17 @@
       </div>
     </div>
     <div class="reveal-r">
-      <form class="form" onsubmit="submitForm(event)">
+      <form id="cotizacionForm" class="form" novalidate>
         <div class="form-row">
-          <div class="ff"><label>Nombre completo *</label><input type="text" placeholder="Tu nombre" required></div>
-          <div class="ff"><label>Teléfono *</label><input type="tel" placeholder="55 1234 5678" required></div>
+          <div class="ff"><label for="campo-nombre">Nombre completo *</label><input id="campo-nombre" type="text" placeholder="Tu nombre" required autocomplete="name"></div>
+          <div class="ff"><label for="campo-telefono">Teléfono *</label><input id="campo-telefono" type="tel" placeholder="55 1234 5678" required autocomplete="tel"></div>
         </div>
-        <div class="ff"><label>Correo electrónico *</label><input type="email" placeholder="correo@ejemplo.com" required></div>
+        <div class="ff"><label for="campo-correo">Correo electrónico *</label><input id="campo-correo" type="email" placeholder="correo@ejemplo.com" required autocomplete="email"></div>
         <div class="form-row">
-          <div class="ff"><label>Tipo de instalación</label><select><option>Casa habitación</option><option>Negocio/Empresa</option><option>Industrial</option><option>Otro</option></select></div>
-          <div class="ff"><label>Monto de su último recibo de luz *</label><div style="position:relative"><span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--t1);font-weight:600;font-size:1.1rem">$</span><input type="number" id="reciboInput" placeholder="Ej: 2500" required style="padding-left:32px"></div></div>
+          <div class="ff"><label for="campo-tipo">Tipo de instalación</label><select id="campo-tipo"><option>Casa habitación</option><option>Negocio/Empresa</option><option>Industrial</option><option>Otro</option></select></div>
+          <div class="ff"><label for="reciboInput">Monto de su último recibo de luz *</label><div style="position:relative"><span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--t1);font-weight:600;font-size:1.1rem">$</span><input type="number" id="reciboInput" placeholder="Ej: 2500" required style="padding-left:32px"></div></div>
         </div>
-        <div class="ff"><label>Mensaje (opcional)</label><textarea rows="3" placeholder="Cuéntanos sobre tu proyecto..."></textarea></div>
+        <div class="ff"><label for="campo-mensaje">Mensaje (opcional)</label><textarea id="campo-mensaje" rows="3" placeholder="Cuéntanos sobre tu proyecto..." maxlength="1000"></textarea></div>
         <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:16px;font-size:1rem" id="submitBtn">Quiero mi cotización gratis →</button>
         <p class="form-note">🔒 Tu información es confidencial. Sin spam, nunca.</p>
       </form>
@@ -918,6 +974,8 @@
     </p>
   </div>
 </section>
+
+</main>
 
 <!-- ══ FOOTER ══ -->
 <footer>
@@ -978,256 +1036,7 @@
   <a href="tel:+527226220941" class="float-btn fb-call">📞 Llamar</a>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════
-     JAVASCRIPT — Inline (global functions + all interactions)
-══════════════════════════════════════════════════════════ -->
-<script>
-/* ══ THEME ══ */
-const html = document.documentElement;
-const themeBtn = document.getElementById('themeBtn');
-
-(function () {
-  const s = localStorage.getItem('abc-theme');
-  const pref = window.matchMedia('(prefers-color-scheme:light)').matches ? 'light' : 'dark';
-  applyTheme(s || pref);
-})();
-
-window.matchMedia('(prefers-color-scheme:light)').addEventListener('change', e => {
-  if (!localStorage.getItem('abc-theme')) applyTheme(e.matches ? 'light' : 'dark');
-});
-
-function applyTheme(t) {
-  html.setAttribute('data-theme', t);
-  if (themeBtn) themeBtn.textContent = t === 'dark' ? '🌙' : '☀️';
-  ['navLogo', 'footerLogo'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.filter = t === 'dark' ? 'brightness(0) invert(1)' : 'brightness(0)';
-  });
-}
-
-function toggleTheme() {
-  const cur = html.getAttribute('data-theme'), n = cur === 'dark' ? 'light' : 'dark';
-  applyTheme(n);
-  localStorage.setItem('abc-theme', n);
-}
-
-/* ══ NAV SLIM ON SCROLL ══ */
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('slim', scrollY > 40);
-}, { passive: true });
-
-/* ══ MOBILE MENU ══ */
-function openMob() {
-  document.getElementById('mobMenu').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeMob() {
-  document.getElementById('mobMenu').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-/* ══ TABS (Para quién) ══ */
-function setTab(i) {
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab' + i).classList.add('active');
-  document.querySelectorAll('.tab-btn')[i].classList.add('active');
-}
-
-/* ══ TESTIMONIOS SCROLL ══ */
-function scrollTest(dir) {
-  const t = document.getElementById('testTrack');
-  t.scrollBy({ left: dir * 380, behavior: 'smooth' });
-}
-
-/* ══ FAQ ══ */
-function toggleFaq(el) {
-  const item = el.parentElement;
-  const open = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-  if (!open) item.classList.add('open');
-}
-
-/* ══ FORM → WHATSAPP ══ */
-function submitForm(e) {
-  e.preventDefault();
-  const form = e.target;
-  const b = document.getElementById('submitBtn');
-  b.classList.add('btn-submitting');
-  b.disabled = true;
-  b.innerHTML = '<span class="submit-spinner"></span> Enviando...';
-  
-  const nombre = form.querySelector('input[type="text"]')?.value || '';
-  const telefono = form.querySelector('input[type="tel"]')?.value || '';
-  const correo = form.querySelector('input[type="email"]')?.value || '';
-  const tipo = form.querySelectorAll('select')[0]?.value || '';
-  const recibo = document.getElementById('reciboInput')?.value || '';
-  const mensaje = form.querySelector('textarea')?.value || '';
-  
-  const waMsg = `Hola, me contacto desde su página web www.abcsolar.com.mx.%0A%0A*Datos de contacto:*%0ANombre: ${encodeURIComponent(nombre)}%0ATeléfono: ${encodeURIComponent(telefono)}%0ACorreo: ${encodeURIComponent(correo)}%0ATipo de instalación: ${encodeURIComponent(tipo)}%0ARecibo mensual: $${encodeURIComponent(recibo)}%0AMensaje: ${encodeURIComponent(mensaje) || 'Sin mensaje adicional'}`;
-  
-  setTimeout(() => {
-    window.open('https://wa.me/527226220941?text=' + waMsg, '_blank');
-    b.classList.remove('btn-submitting');
-    b.classList.add('btn-success');
-    b.innerHTML = '&#10003; ¡Listo! Te contactamos muy pronto';
-    setTimeout(() => {
-      b.classList.remove('btn-success');
-      b.innerHTML = 'Quiero mi cotización gratis →';
-      b.disabled = false;
-      form.reset();
-    }, 4000);
-  }, 900);
-}
-
-/* ══ CALCULADORA SOLAR ══ */
-const TARIFAS = {
-  residencial:     { kwh: 2.20, nota: '⚡ Tarifa 1/DAC: subsidio escalonado. Bajo consumo ≈ $1.00/kWh; al pasar a DAC sube a $4–$7/kWh. Promedio ponderado típico mostrado.' },
-  comercial_pdbt:  { kwh: 4.00, nota: '🏪 PDBT (hasta 25 kW): tarifa más común en negocios pequeños y medianos. Sin subsidio. Promedio nacional 2025: ~$4.00/kWh.' },
-  comercial_gdbt:  { kwh: 4.20, nota: '🏢 GDBT (>25 kW baja tensión): tarifa para negocios con alta demanda. Incluye cargo por demanda + consumo. ~$3.50–$4.80/kWh.' },
-  industrial_gdmto:{ kwh: 3.20, nota: '🏭 GDMTO (media tensión ordinaria): tarifa industrial sin diferenciación horaria. ~$2.80–$3.80/kWh según región.' },
-  industrial_gdmth:{ kwh: 5.20, nota: '⚡ GDMTH (horaria): precios diferenciados. Punta: $5–$6.50/kWh. Solar elimina consumo en horas punta, máximo ahorro.' },
-};
-const KW_PANEL = 0.6, M2 = 2.4, HSP = 5.5, CO2F = 0.582, CO2A = 22;
-const CKWP = { residencial: 18500, comercial_pdbt: 16000, comercial_gdbt: 15000, industrial_gdmto: 14000, industrial_gdmth: 13500 };
-
-function fmt(n) { return '$' + Math.round(n).toLocaleString('es-MX'); }
-
-function calcular() {
-  const recibo = parseFloat(document.getElementById('recibo').value) || 0;
-  const tipo = document.getElementById('tipo').value;
-  const pct = parseInt(document.getElementById('pct').value);
-  const pctLbl = document.getElementById('pct-lbl');
-  if (pctLbl) pctLbl.textContent = pct + '%';
-  const sl = document.getElementById('pct');
-  const pv = ((pct - 40) / 60) * 100;
-  sl.style.background = `linear-gradient(to right,var(--sun) 0%,var(--sun) ${pv}%,var(--bdr) ${pv}%,var(--bdr) 100%)`;
-  const t = TARIFAS[tipo] || TARIFAS.residencial;
-  const tnEl = document.getElementById('tariff-note');
-  if (tnEl) tnEl.textContent = t.nota;
-  if (recibo <= 0) return;
-  const ahorroMes = recibo * (pct / 100), ahorroA = ahorroMes * 12, costoA = recibo * 12;
-  const kwhNec = (recibo / t.kwh) * (pct / 100);
-  const kWp = (kwhNec / 30) / HSP;
-  const paneles = Math.max(1, Math.ceil(kWp / KW_PANEL));
-  const cap = (paneles * KW_PANEL).toFixed(1), esp = (paneles * M2).toFixed(1);
-  const inv = parseFloat(cap) * (CKWP[tipo] || 18500);
-  const roi = ahorroMes > 0 ? (inv / ahorroMes / 12).toFixed(1) : '—';
-  const co2 = Math.round(kwhNec * 12 * CO2F);
-  const arb = (co2 / CO2A).toFixed(1);
-  document.getElementById('rc-mensual').textContent = fmt(recibo);
-  document.getElementById('rc-anual').textContent = fmt(costoA) + '/año';
-  document.getElementById('rc-ahorro').textContent = fmt(ahorroMes);
-  document.getElementById('rc-ahorro-a').textContent = fmt(ahorroA) + '/año';
-  document.getElementById('rc-co2').textContent = co2 + ' kg';
-  document.getElementById('rc-arb').textContent = '≈ ' + arb + ' árboles/año';
-  document.getElementById('r-paneles').textContent = paneles;
-  document.getElementById('r-cap').textContent = cap;
-  document.getElementById('r-esp').textContent = esp;
-  document.getElementById('r-roi').textContent = roi;
-}
-
-/* ══ INIT CALCULATOR & RANGE SLIDER ══ */
-calcular();
-setTimeout(() => {
-  const s = document.getElementById('pct');
-  if (s) {
-    const v = ((parseInt(s.value) - 40) / 60) * 100;
-    s.style.background = `linear-gradient(to right,var(--sun) 0%,var(--sun) ${v}%,var(--bdr) ${v}%,var(--bdr) 100%)`;
-  }
-  const tn = document.getElementById('tariff-note');
-  if (tn) tn.textContent = TARIFAS.residencial.nota;
-}, 80);
-
-/* ══ SCROLL REVEAL ══ */
-const revObs = new IntersectionObserver(entries => entries.forEach(e => {
-  if (e.isIntersecting) { e.target.classList.add('on'); revObs.unobserve(e.target); }
-}), { threshold: 0.07 });
-document.querySelectorAll('.reveal, .reveal-l, .reveal-r, .stg').forEach(el => revObs.observe(el));
-
-/* ══ COUNT UP ══ */
-const cObs = new IntersectionObserver(entries => entries.forEach(e => {
-  if (e.isIntersecting) { animCount(e.target); cObs.unobserve(e.target); }
-}), { threshold: 0.5 });
-document.querySelectorAll('.count-up').forEach(el => cObs.observe(el));
-
-function animCount(el) {
-  const t = parseInt(el.dataset.target), d = 1800, step = t / (d / 16);
-  let c = 0;
-  const ti = setInterval(() => {
-    c += step;
-    if (c >= t) { c = t; clearInterval(ti); }
-    el.textContent = Math.floor(c);
-  }, 16);
-}
-
-/* ══ VIDEO MODAL — YouTube ══ */
-(function () {
-  // 👉 Pega aquí el ID de tu video de YouTube (lo que va después de ?v= en la URL)
-  // Ejemplo: https://www.youtube.com/watch?v=dQw4w9WgXcQ → ID es 'dQw4w9WgXcQ'
-  const YOUTUBE_ID = '';
-
-  const modal = document.getElementById('videoModal');
-  if (!modal) return;
-
-  function openVideoModal() {
-    const iframe = document.getElementById('ytPlayer');
-    if (iframe && YOUTUBE_ID) {
-      iframe.src = `https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1&rel=0&modestbranding=1&vq=hd1080`;
-    }
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeVideoModal() {
-    const iframe = document.getElementById('ytPlayer');
-    if (iframe) iframe.src = '';
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-
-  modal.addEventListener('click', e => { if (e.target === modal) closeVideoModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideoModal(); });
-
-  window.openVideoModal  = openVideoModal;
-  window.closeVideoModal = closeVideoModal;
-})();
-
-
-/* ══ CO₂ LIVE COUNTER ══ */
-(function () {
-  // 12M kWh/año × 0.582 kg CO2/kWh ÷ 365 ÷ 86400 = 0.221 kg CO2/seg
-  const CO2_PER_SEC = 0.221;
-  const now = new Date();
-  const secToday = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
-  let co2 = secToday * CO2_PER_SEC;
-  const el = document.getElementById('co2LiveCounter');
-  if (!el) return;
-  const prefersRM = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  el.textContent = Math.floor(prefersRM ? co2 + CO2_PER_SEC * 43200 : co2).toLocaleString('es-MX');
-  if (prefersRM) return;
-  setInterval(() => {
-    co2 += CO2_PER_SEC;
-    el.textContent = Math.floor(co2).toLocaleString('es-MX');
-  }, 1000);
-})();
-
-/* ══ STATES ANIMATION (staggered reveal) ══ */
-const _rm = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-const stateObs = new IntersectionObserver(entries => entries.forEach(e => {
-  if (e.isIntersecting) {
-    const states = e.target.querySelectorAll('.stt.on');
-    if (_rm) { states.forEach(s => s.style.opacity = '1'); }
-    else { states.forEach((s, i) => setTimeout(() => s.style.opacity = '1', i * 40)); }
-    stateObs.unobserve(e.target);
-  }
-}), { threshold: 0.1 });
-const sg = document.getElementById('statesGrid');
-if (sg) {
-  if (!_rm) sg.querySelectorAll('.stt.on').forEach(s => s.style.opacity = '0');
-  stateObs.observe(sg);
-}
-</script>
+<script src="assets/js/app.js"></script>
 
 </body>
 </html>

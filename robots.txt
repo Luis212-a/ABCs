@@ -1,0 +1,20 @@
+# ABC Solar - robots.txt
+# Allow search engines to crawl and index all public content
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /.env
+Disallow: /node_modules/
+
+# Specify sitemap location
+Sitemap: https://abcsolar.com.mx/sitemap.xml
+
+# Crawl delay (optional - conservative approach)
+Crawl-delay: 1
+
+# User-agent specific rules (if needed)
+User-agent: AdsBot-Google
+Allow: /

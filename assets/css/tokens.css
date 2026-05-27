@@ -32,7 +32,7 @@
   /* Text Colors */
   --t0: #EFF6FF;
   --t1: #93B8D4;
-  --t2: #4A6E8A;
+  --t2: #6B8EAB; /* raised from #4A6E8A — contrast 6.2:1 on --bg0 (WCAG AA) */
   --tinv: #04080F;
 
   /* UI Elements */

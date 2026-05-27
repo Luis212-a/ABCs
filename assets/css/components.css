@@ -113,7 +113,11 @@ nav.slim { padding: 8px 56px; }
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
 }
 .ham span {
   display: block;
@@ -225,7 +229,11 @@ nav.slim { padding: 8px 56px; }
 .btn-cta {
   background: var(--sun);
   color: var(--tinv);
-  padding: 10px 22px;
+  padding: 12px 24px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: var(--radius-sm);
   font-weight: 700;
   font-size: 0.85rem;
@@ -387,4 +395,86 @@ nav.slim { padding: 8px 56px; }
   outline-offset: 6px;
 }
 
+/* ══ FORM VALIDATION ══ */
+input.error,
+textarea.error,
+select.error {
+  border-color: #ef5350 !important;
+  background: rgba(239, 83, 80, 0.08) !important;
+  color: var(--t0);
+}
+
+input.error:focus,
+textarea.error:focus,
+select.error:focus {
+  border-color: #ef5350 !important;
+}
+
+.form-error {
+  font-size: 0.85rem;
+  color: #ef5350;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* ══ CALCULATOR RESULT FEEDBACK ══ */
+.calc-box {
+  transition: box-shadow var(--transition-normal);
+}
+
+.calc-box.result-highlight {
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+}
+
+.res-card {
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.res-card.pulse {
+  animation: pulse-scale 0.6s ease-out;
+}
+
+@keyframes pulse-scale {
+  0% { transform: scale(0.95); opacity: 0.5; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
 .mob-cta-bar { display: none !important; }
+
+/* ══ VIDEO MODAL CLOSE BUTTON ══ */
+.video-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ══ ESTADO CARDS — hover via CSS (replaces onmouseover/onmouseout) ══ */
+.estado-card {
+  transition: background var(--transition-normal);
+}
+
+.estado-primary:hover {
+  background: rgba(245, 158, 11, 0.12) !important;
+}
+
+.estado-secondary:hover {
+  background: rgba(245, 158, 11, 0.09) !important;
+}
